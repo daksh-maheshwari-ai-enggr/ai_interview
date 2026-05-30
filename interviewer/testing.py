@@ -10,11 +10,11 @@ def get_recent_history(history: list, n: int = 6) -> list:
 
 def run_interview(resume_path: str):
 
-    print("\n⏳ Parsing your resume...\n")
+    print("\n Parsing your resume...\n")
     text = load_pdf(resume_path)
     cleaned = clean_resume(text)
     layer1 = resume_pipeline.invoke(ResumeGraphState(raw_text=cleaned))
-    print("✅ Resume parsed successfully\n")
+    print(" Resume parsed successfully\n")
 
     state = InterviewState(
         personal_info=layer1["personal_info"],
@@ -36,16 +36,16 @@ def run_interview(resume_path: str):
         history = current.values["conversation_history"]
         last_message = history[-1]["content"]
 
-        print(f"\n🎙️  Interviewer: {last_message}\n")
+        print(f"\n  Interviewer: {last_message}\n")
 
         if current.values.get("interview_complete"):
-            print("✅ Interview complete!")
+            print("Interview complete!")
             break
 
         user_input = input("👤 You: ").strip()
 
         if user_input.lower() in ["exit", "quit", "q"]:
-            print("\n👋 Interview ended.")
+            print("\n Interview ended.")
             break
 
         # inject answer into paused state
