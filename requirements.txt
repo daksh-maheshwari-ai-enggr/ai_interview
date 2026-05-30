@@ -1,0 +1,7 @@
+langchain
+langgraph
+dotenv
+pypdf
+langchain-groq
+langchain-community
+rich
